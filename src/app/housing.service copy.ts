@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
 import { HousingLocation } from './housing-location';
 
 @Injectable({
@@ -110,8 +109,7 @@ export class HousingService {
   //   // },
   // ];
 
-  private url = 'http://localhost:3000/locations';
-  private searchSubject = new BehaviorSubject<string>('');
+  url = 'http://localhost:3000/locations';
 
   constructor() {}
 
@@ -135,13 +133,5 @@ export class HousingService {
 
   submitApplication(firstName: string, lastName: string, email: string) {
     console.log(firstName, lastName, email);
-  }
-
-  setSearchTerm(term: string): void {
-    this.searchSubject.next(term);
-  }
-
-  getSearchTerm() {
-    return this.searchSubject.asObservable();
   }
 }

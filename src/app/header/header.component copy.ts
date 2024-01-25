@@ -1,12 +1,9 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-import { HousingService } from '../housing.service';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [FormsModule],
+  imports: [],
   template: `
     <section>
       <header class="p-3 mb-3 border-bottom">
@@ -32,11 +29,11 @@ import { HousingService } from '../housing.service';
               class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"
             >
               <li>
-                <a href="#" class="nav-link px-2 link-secondary">Home</a>
+                <a href="#" class="nav-link px-2 link-secondary">Overview</a>
               </li>
-              <li><a href="#" class="nav-link px-2 link-dark">Rent</a></li>
-              <li><a href="#" class="nav-link px-2 link-dark">Buy</a></li>
-              <li><a href="#" class="nav-link px-2 link-dark">Contact</a></li>
+              <li><a href="#" class="nav-link px-2 link-dark">Inventory</a></li>
+              <li><a href="#" class="nav-link px-2 link-dark">Customers</a></li>
+              <li><a href="#" class="nav-link px-2 link-dark">Products</a></li>
             </ul>
 
             <form
@@ -44,14 +41,13 @@ import { HousingService } from '../housing.service';
             >
               <input
                 type="text"
-                [(ngModel)]="searchTerm"
-                [ngModelOptions]="{ standalone: true }"
+                class="form-control me-2"
                 placeholder="Filter by city"
-                class="form-control"
+                #filter
+                aria-label="Filter by city"
               />
-              <button (click)="applySearch()" class="btn btn-primary">
-                Search
-              </button>
+              <!-- new line of code (click)="filterResults(filter.value)"-->
+              <button type="button" class="btn btn-primary">Search</button>
             </form>
           </div>
         </div>
@@ -60,12 +56,4 @@ import { HousingService } from '../housing.service';
   `,
   styleUrl: './header.component.css',
 })
-export class HeaderComponent {
-  searchTerm: string = '';
-
-  constructor(private housingService: HousingService) {}
-
-  applySearch(): void {
-    this.housingService.setSearchTerm(this.searchTerm);
-  }
-}
+export class HeaderComponent {}
