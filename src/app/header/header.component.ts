@@ -43,8 +43,10 @@ import { Component } from '@angular/core';
                 type="text"
                 class="form-control me-2"
                 placeholder="Filter by city"
+                #filter
                 aria-label="Filter by city"
               />
+              <!-- new line of code (click)="filterResults(filter.value)"-->
               <button type="button" class="btn btn-primary">Search</button>
             </form>
           </div>
